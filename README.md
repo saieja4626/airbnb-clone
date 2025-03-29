@@ -22,9 +22,11 @@ This is a full-stack Airbnb clone application built with Node.js, Express, Mongo
    ```sh
    git clone https://github.com/saieja4626/airbnb-clone.git
    cd airbnb-clone
-2. Install dependencies
+2. Install dependencies:
+   ```sh
     npm install
-3. Set up your .env file
-4. Start the application:
+4. Set up your .env file
+5. Start the application:
+   ```sh
    node app.js
 
