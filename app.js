@@ -34,31 +34,13 @@ app.engine("ejs",ejsMate);
 //app.use(cookieparser);
 
 
-//const password = "raju"; // Choose a new password
-//const salt = crypto.randomBytes(32).toString("hex");
-//const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-
-//console.log("New Salt:", salt);
-//console.log("New Hash:", hash);
-const crypto = require("crypto");
-
-function verifyPassword(enteredPassword, user) {
-    const inputHash = crypto.pbkdf2Sync(enteredPassword, user.salt, 10000, 64, "sha512").toString("hex");
-    
-    console.log("Entered password:", enteredPassword);
-    console.log("Salt from DB:", user.salt);
-    console.log("Generated Hash:", inputHash);
-    console.log("Stored Hash:", user.hash);
-    console.log("Match:", inputHash === user.hash);
-    
-    return inputHash === user.hash;
-}
 
 
 
 
 
-const mongourl = "mongodb://127.0.0.1:27017/wounderlust";
+
+const mongourl = process.env.MONGO_URL;
 main()
 .then(()=>{
     console.log("success");
@@ -72,7 +54,7 @@ async function main() {
 }
 
 const sessionOptions = {
-    secret:"mysecretstring",
+    secret: process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized: true,
     cookie: {
@@ -100,14 +82,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-//app.get("/demouser", async (req,res,next)=>{
-   // let fakeuser = new User({
-       // email :  "student@gmail.com" ,
-    //username : "raju"
-  //})
- // let registeruser = await User.register(fakeuser,"hellojava");
-  //res.send(registeruser);
-//});
+
 
 
 
